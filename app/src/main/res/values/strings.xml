@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Movie Box</string>
+    <string name="trending_series">Trending Series</string>
+    <string name="trending_movies">Trending Movies</string>
+    <string name="popular_series">Popular Series</string>
+    <string name="upcoming_movies">Upcoming Movies</string>
+    <string name="on_air">On Air</string>
+    <string name="top_rated_series">Top Rated Series</string>
+    <string name="top_rated_movies">Top Rated movies</string>
+    <string name="user_score">User Score</string>
+    <string name="overview">Overview</string>
+    <string name="cast">Cast</string>
+    <string name="similar">Similar</string>
+    <string name="where_to_watch">Where to watch</string>
+    <string name="rent">Rent</string>
+    <string name="buy">Buy</string>
+    <string name="stream">Stream</string>
+    <string name="release_date">Release Date:</string>
+    <string name="original_language">Original Language:</string>
+    <string name="popularity">Popularity</string>
+    <string name="known_for">Known For</string>
+    <string name="first_air_date">First Air Date:</string>
+    <string name="origin_country">Origin Country:</string>
+    <string name="try_again">Try Again</string>
+    <string name="close">Close</string>
+    <string name="source_of_data">Source of data:</string>
+    <string name="providers">The Movie Database &amp; JustWatch</string>
+    <string name="developed_by">Developed By Carlos Gonzalez</string>
+    <string name="my_email">carlos.glz12130570@gmail.com</string>
+    <string name="image_url_500">https://image.tmdb.org/t/p/w500/</string>
+    <string name="image_url_200">https://image.tmdb.org/t/p/w200/</string>
+</resources>
