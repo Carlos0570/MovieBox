@@ -1,5 +1,9 @@
-# MovieBox
-🎬 MovieBox: Your Gateway to Cinematic Exploration
+<p align="center">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/233643ed-62b8-4ff7-a001-14a3ae6c2395" width="180" height="180">
+</p>
+
+
+# 🎬 MovieBox: Your Gateway to Cinematic Exploration  
 
 ## Description:
 MovieBox is your one-stop destination for discovering trending movies and series, exploring the best-rated content, staying updated on currently airing series, and getting excited about upcoming releases. Dive deep into the world of cinema with detailed information on each title, including cast members, and find convenient links to providers for buying or streaming your favorite shows.
