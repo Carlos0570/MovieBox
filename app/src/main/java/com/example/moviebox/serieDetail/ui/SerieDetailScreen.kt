@@ -79,7 +79,7 @@ private fun SerieDetailScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         item {
-            MediaItemImageHeader(serieDetail, serieDetail?.originalName ?: "")
+            MediaItemImageHeader(serieDetail, serieDetail?.originalName ?: "", navController)
         }
         item {
             DetailsTab(

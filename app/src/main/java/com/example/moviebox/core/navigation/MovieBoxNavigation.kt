@@ -13,6 +13,8 @@ import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.example.moviebox.castDetail.ui.CastDetailScreenBody
 import com.example.moviebox.castDetail.ui.CastViewModel
+import com.example.moviebox.searchscreen.ui.SearchScreenBody
+import com.example.moviebox.searchscreen.ui.SearchViewModel
 import com.example.moviebox.serieDetail.ui.SerieDetailScreenBody
 import com.example.moviebox.serieDetail.ui.SerieDetailViewModel
 
@@ -24,6 +26,11 @@ fun MovieBoxNavigation() {
         composable(route = Screen.HomeScreen.route) {
             val homeViewModel = hiltViewModel<HomeViewModel>()
             HomeScreenBody(homeViewModel, navController)
+        }
+
+        composable(route = Screen.SearchScreen.route) {
+            val searchViewModel = hiltViewModel<SearchViewModel>()
+            SearchScreenBody(searchViewModel, navController)
         }
 
         composable(

@@ -1,5 +1,6 @@
 package com.example.moviebox.core.data
 
+import com.example.moviebox.core.data.dataClasses.Movie
 import com.example.moviebox.core.network.MoviesService
 import javax.inject.Inject
 
@@ -7,6 +8,7 @@ class MovieBoxRepository @Inject constructor(private val api: MoviesService) {
 
     suspend fun getTrendingMovies() = api.getTrendingMovies()
 
+    suspend fun getPopularMovies() = api.getPopularMovies()
     suspend fun getUpcomingMovies() = api.getUpComingMovies()
 
     suspend fun getTopRatedMovies() = api.getTopRatedMovies()
@@ -38,4 +40,10 @@ class MovieBoxRepository @Inject constructor(private val api: MoviesService) {
     suspend fun getPersonCredits(personId: Int) = api.getPersonCredits(personId)
 
     suspend fun getPersonDetails(personId: Int) = api.getPersonDetails(personId)
+
+    suspend fun searchMovie(movieName: String) = api.searchMovie(movieName)
+
+    suspend fun searchSerie(serieName: String) = api.searchSerie(serieName)
+
+    suspend fun searchPerson(personName: String) = api.searchPerson(personName)
 }

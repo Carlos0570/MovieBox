@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,12 +33,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.moviebox.R
 
 @Composable
-fun PersonImageHeader(person: Person?) {
+fun PersonImageHeader(person: Person?, navController: NavHostController) {
     var sizeImage by remember { mutableStateOf(IntSize.Zero) }
     Box(
         modifier = Modifier
@@ -43,6 +48,13 @@ fun PersonImageHeader(person: Person?) {
     ) {
         MediaBackgroundImage(person)
         GradientBox(sizeImage, Modifier.matchParentSize())
+        IconButton(
+            onClick = { navController.popBackStack() }, modifier = Modifier
+                .padding(6.dp)
+                .align(Alignment.TopStart)
+        ) {
+            Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = null)
+        }
         MediaTitle(
             name = person?.name ?: "", score = person?.popularity, modifier = Modifier
                 .padding(9.dp)

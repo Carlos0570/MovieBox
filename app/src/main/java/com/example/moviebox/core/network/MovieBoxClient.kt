@@ -9,6 +9,7 @@ import com.example.moviebox.core.data.dataClasses.Person
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieBoxClient {
     @GET("trending/movie/day?language=en-US")
@@ -57,8 +58,29 @@ interface MovieBoxClient {
     suspend fun onTheAir(): Response<MovieBoxResponse<Serie>>
 
     @GET("person/{person_id}/combined_credits")
-    suspend fun getPersonCredits(@Path("person_id") personId: Int): Credits
+    suspend fun getPersonCredits(@Path("person_id") personId: Int): Response<Credits>
 
     @GET("person/{person_id}")
-    suspend fun getPersonDetails(@Path("person_id") personId: Int): Person
+    suspend fun getPersonDetails(@Path("person_id") personId: Int): Response<Person>
+
+    @GET("movie/popular")
+    suspend fun getPopularMovies(): Response<MovieBoxResponse<Movie>>
+
+    @GET("search/movie")
+    suspend fun searchMovie(
+        @Query("query") query: String,
+        @Query("language") language: String = "en-US"
+    ): Response<MovieBoxResponse<Movie>>
+
+    @GET("search/tv")
+    suspend fun searchSerie(
+        @Query("query") query: String,
+        @Query("language") language: String = "en-US"
+    ): Response<MovieBoxResponse<Serie>>
+
+    @GET("search/person")
+    suspend fun searchPerson(
+        @Query("query") query: String,
+        @Query("language") language: String = "en-US"
+    ): Response<MovieBoxResponse<Person>>
 }

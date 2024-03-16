@@ -14,6 +14,7 @@ import com.example.moviebox.home.domain.TopRatedSeriesUseCase
 import com.example.moviebox.home.domain.TrendingMoviesUseCase
 import com.example.moviebox.home.domain.TrendingSeriesUseCase
 import com.example.moviebox.home.domain.UpComingMoviesUseCase
+import com.example.moviebox.searchscreen.domain.PopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -29,6 +30,7 @@ class HomeViewModel @Inject constructor(
     private val topRatedSeriesUseCase: TopRatedSeriesUseCase,
     private val upComingMoviesUseCase: UpComingMoviesUseCase,
     private val topRatedMoviesUseCase: TopRatedMoviesUseCase,
+    val popularMoviesUseCase: PopularMoviesUseCase,
     private val onAirUseCase: OnAirUseCase,
 ) : ViewModel() {
 
@@ -58,6 +60,9 @@ class HomeViewModel @Inject constructor(
     private val _recommendedMovie = MutableStateFlow<Movie?>(null)
     val recommendedMovie = _recommendedMovie
 
+    private val _popularMovies = MutableStateFlow<List<Movie>>(emptyList())
+    val popularMovies = _popularMovies
+
     init {
         getHomeScreenData()
     }
@@ -73,7 +78,8 @@ class HomeViewModel @Inject constructor(
                 launch { getOnAirSeries() },
                 launch { getTopRatedSeries() },
                 launch { getPopularSeries() },
-                launch { getTrendingMovies() }
+                launch { getTrendingMovies() },
+                launch { getPopularMovies() }
             )
             if (state.value is ScreenState.LOADING)
                 state.value = ScreenState.SUCCESS
@@ -159,6 +165,18 @@ class HomeViewModel @Inject constructor(
             is Result.Success -> {
                 _trendingMovies.value = result.data
                 _recommendedMovie.value = _trendingMovies.value.random()
+            }
+        }
+    }
+
+    private suspend fun getPopularMovies() {
+        when (val result = popularMoviesUseCase()) {
+            is Result.Error ->
+                if (result.exception is IOException)
+                    state.value = ScreenState.FAILURE(result.errorMessage)
+
+            is Result.Success -> {
+                _popularMovies.value = result.data
             }
         }
     }

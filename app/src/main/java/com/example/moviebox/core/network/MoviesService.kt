@@ -14,6 +14,10 @@ class MoviesService @Inject constructor(private val movieBoxClient: MovieBoxClie
         movieBoxClient.getTrendingMovies().body()?.results ?: emptyList()
     }
 
+    suspend fun getPopularMovies(): Result<List<Movie>> = safeAPICall {
+        movieBoxClient.getPopularMovies().body()?.results ?: emptyList()
+    }
+
     suspend fun getUpComingMovies(): Result<List<Movie>> = safeAPICall {
         movieBoxClient.upComingMovies().body()?.results ?: emptyList()
     }
@@ -72,12 +76,24 @@ class MoviesService @Inject constructor(private val movieBoxClient: MovieBoxClie
             ?.providersByCountry ?: ProvidersByCountry()
     }
 
-    suspend fun getPersonCredits(personId: Int): Result<Credits> = safeAPICall {
-        movieBoxClient.getPersonCredits(personId)
+    suspend fun getPersonCredits(personId: Int): Result<Credits?> = safeAPICall {
+        movieBoxClient.getPersonCredits(personId).body()
     }
 
     suspend fun getPersonDetails(personId: Int): Result<Person?> = safeAPICall {
-        movieBoxClient.getPersonDetails(personId)
+        movieBoxClient.getPersonDetails(personId).body()
+    }
+
+    suspend fun searchMovie(movieName: String): Result<List<Movie>> = safeAPICall {
+        movieBoxClient.searchMovie(movieName).body()?.results ?: emptyList()
+    }
+
+    suspend fun searchSerie(serieName: String): Result<List<Serie>> = safeAPICall {
+        movieBoxClient.searchSerie(serieName).body()?.results ?: emptyList()
+    }
+
+    suspend fun searchPerson(personName: String): Result<List<Person>> = safeAPICall {
+        movieBoxClient.searchPerson(personName).body()?.results ?: emptyList()
     }
 }
 

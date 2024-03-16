@@ -80,7 +80,7 @@ private fun MovieDetailScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         item {
-            MediaItemImageHeader(movieDetail, movieDetail?.originalTitle ?: "")
+            MediaItemImageHeader(movieDetail, movieDetail?.originalTitle ?: "", navController)
         }
         item {
             DetailsTab(movieDetail, movieCast, similarMovies, movieProviders, navController)

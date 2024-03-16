@@ -1,7 +1,6 @@
 package com.example.moviebox.home.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +14,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -53,48 +54,50 @@ private fun HomeScreen(
     homeViewModel: HomeViewModel,
     navController: NavController
 ) {
-        Column {
-            Header()
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxSize()
-            ) {
-                item {
-                    LargeCard(homeViewModel, navController)
-                }
-                item {
-                    PopularSeries(homeViewModel, navController)
-                }
-                item {
-                    TrendingMovies(homeViewModel, navController)
-                }
-                item {
-                    TopRatedSeries(homeViewModel, navController)
-                }
-                item {
-                    OnAirSeries(homeViewModel, navController)
-                }
-                item {
-                    UpComingMovies(homeViewModel, navController)
-                }
-                item {
-                    TrendingSeries(homeViewModel, navController)
-                }
-                item {
-                    TopRatedMovies(homeViewModel, navController)
-                }
+    Column {
+        Header(navController)
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxSize()
+        ) {
+            item {
+                LargeCard(homeViewModel, navController)
+            }
+            item {
+                PopularSeries(homeViewModel, navController)
+            }
+            item {
+                TrendingMovies(homeViewModel, navController)
+            }
+            item {
+                TopRatedSeries(homeViewModel, navController)
+            }
+            item {
+                OnAirSeries(homeViewModel, navController)
+            }
+            item {
+                UpComingMovies(homeViewModel, navController)
+            }
+            item {
+                TrendingSeries(homeViewModel, navController)
+            }
+            item {
+                TopRatedMovies(homeViewModel, navController)
+            }
+            item {
+                PopularMovies(homeViewModel, navController )
             }
         }
-
+    }
 }
 
 @Composable
-private fun Header() {
-    val showDialog = remember { mutableStateOf(false) }
-    if (showDialog.value)
-        AboutDialog(onDismissRequest = { showDialog.value = false })
+private fun Header(navController: NavController) {
+    val showInfoDialog = remember { mutableStateOf(false) }
+    if (showInfoDialog.value)
+        AboutDialog(onDismissRequest = { showInfoDialog.value = false })
 
-    Spacer(modifier = Modifier.height(8.dp))
+    Spacer(modifier = Modifier.height(6.dp))
     Row(
         modifier = Modifier
             .background(Color.Transparent)
@@ -105,15 +108,22 @@ private fun Header() {
     ) {
         Text(
             text = stringResource(R.string.app_name),
-            modifier = Modifier.padding(3.dp),
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.primary
         )
-        Icon(imageVector = Icons.Outlined.Info, contentDescription = null, Modifier.clickable {
-            showDialog.value = true
-        })
+        Row {
+            IconButton(
+                onClick = { showInfoDialog.value = true },
+            ) {
+                Icon(Icons.Outlined.Info, contentDescription = null)
+            }
+            IconButton(
+                onClick = { navController.navigate(Screen.SearchScreen.route) },
+            ) {
+                Icon(Icons.Outlined.Search, contentDescription = null)
+            }
+        }
     }
-    Spacer(modifier = Modifier.height(8.dp))
 }
 
 @Composable
@@ -249,6 +259,24 @@ fun TopRatedMovies(homeViewModel: HomeViewModel, navController: NavController) {
                     ) {
                         navController.navigate(Screen.MovieDetailScreen.createRoute(movie.id ?: 0))
                     }
+                }
+            }
+        }
+}
+
+@Composable
+fun PopularMovies(homeViewModel: HomeViewModel, navController: NavController) {
+    val popularMovies by homeViewModel.popularMovies.collectAsState()
+    if (popularMovies.isNotEmpty())
+        Column {
+            Text(
+                text = stringResource(id = R.string.popular_movies),
+                style = MaterialTheme.typography.titleSmall
+            )
+            LazyRow {
+                items(popularMovies) {
+                    SmallCard(it.posterPath ?: "")
+                    { navController.navigate(Screen.SerieDetail.createRoute(it.id ?: 0)) }
                 }
             }
         }

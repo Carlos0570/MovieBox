@@ -72,7 +72,7 @@ private fun CastScreen(
 
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
-            PersonImageHeader(person = personDetails)
+            PersonImageHeader(person = personDetails, navController)
         }
         item {
             DetailsTab(
