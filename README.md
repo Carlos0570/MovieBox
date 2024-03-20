@@ -11,11 +11,12 @@ MovieBox is your one-stop destination for discovering trending movies and series
 
 ## Key Features:
 🌟  Explore Trending Content: Stay in the loop with the latest trends in the world of movies and series. From blockbusters to hidden gems, MovieBox keeps you updated on what's hot.  
+🔍 Search Screen: Easily search for series, movies, and artists. Find what you're looking for quickly and efficiently.  
 🏆  Discover Best-Rated Titles: Uncover critically acclaimed movies and series that have captured the hearts of audiences worldwide. Find your next binge-worthy obsession effortlessly.  
 📺  Stay Tuned with On-Air Series: MovieBox provides real-time updates on currently airing series, so you never have to worry about falling behind.  
 🎥  Get Excited for Upcoming Releases: Be the first to know about upcoming movie releases and series premieres. Get sneak peeks, and release dates to plan your watchlist ahead of time.   
 👥  Explore Cast Information: Delve into the world of your favorite actors and actresses. Discover the cast for each title, including their bios and other notable works.   
-📡  Streamlined Provider Links: Find providers for buying or streaming your favorite movies and series. 
+📡  Streamlined Provider Links: Find providers for buying or streaming your favorite movies and series.   
 
 ## Data Source Credits:
 📊 The Movie Database (TMDb): MovieBox utilizes data from The Movie Database to provide comprehensive information on movies, series, cast members, and more. With TMDb's extensive database, MovieBox ensures that you have access to accurate and up-to-date content at your fingertips.  
@@ -35,16 +36,20 @@ MovieBox is your one-stop destination for discovering trending movies and series
 App Video:  
 https://github.com/Carlos0570/MovieBox/assets/119904210/b8238e82-2a76-421f-9bff-5ba354ef68ae
 
-  
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/32796fd1-b078-47af-acb3-35ca9c345e35" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/902867b1-2b0a-4cee-8aa9-b977b23ef101" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/8196f713-7b7d-4277-9a5c-e313d81ecf97" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d36b215b-90f5-4e68-a274-2aa1c0a97952" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/3d03828d-4e98-4332-b2c5-b55cab28d7b1" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/76c8be65-d504-4315-bd13-7cf9cb164fa7" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/833f9d87-219d-4825-bf28-e5abe786ae14" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/43203524-1e7e-4e6b-b982-d623f09da09a" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/768c9f27-4a12-4be5-bea7-1cbceca53080" width="184.2" height="409.6">
+
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/65184094-0fea-46b3-917d-9440dff90dbd" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/c55dc2de-8b77-43b0-9349-2dcf5d001b7f" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/1c7054fa-d2c7-485b-aff1-93d196fc63ae" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/1e1727d6-7805-4cd7-8435-b20568fa6e1f" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/57abe8f4-c96b-4082-b287-88294af258b6" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/76e56f9f-4879-4a3d-998c-7ea510563234" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d60545a3-278d-402a-af1f-7ec93dfcd940" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/789b0b62-a854-4018-906c-ab6940541e02" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/ad9ddce4-6e1b-42ba-a068-6ff8d08ef291" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/b0b7dad1-ddd9-4018-a834-42235af6d41a" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/64778bf4-553d-43e4-8c2b-b4930c3df35f" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/4604097b-e866-4c44-a3f4-3c59c24cab91" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/87796260-9fd8-4e2a-a570-b7286c90e9fd" width="184.2" height="409.6">
 
 ## Configuration
 To enable the functionality of the application, it is imperative to generate an API key from The Movie Database (TMDb). To obtain this key, please follow the instructions outlined in the following link: [TMDb API Key Generation.](https://developer.themoviedb.org/reference/intro/authentication#api-key-quick-start)  
