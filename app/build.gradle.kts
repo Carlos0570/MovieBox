@@ -69,11 +69,12 @@ dependencies {
     val navVersion = "2.7.7"
     val splashScreenVersion = "1.0.1"
     val lottieVersion = "6.4.0"
+    val swipeRefreshVersion = "0.27.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation(platform("androidx.compose:compose-bom:2024.02.02"))
+    implementation(platform("androidx.compose:compose-bom:2024.03.00"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -81,7 +82,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("io.coil-kt:coil-svg:2.2.2")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
-    implementation("androidx.compose.runtime:runtime-livedata:1.6.3")
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.4")
     implementation("com.github.bumptech.glide:compose:1.0.0-beta01")
     implementation("jp.wasabeef:glide-transformations:4.3.0")
     implementation("jp.co.cyberagent.android:gpuimage:2.1.0")
@@ -95,13 +96,14 @@ dependencies {
     implementation("androidx.core:core-splashscreen:$splashScreenVersion")
     implementation("com.airbnb.android:lottie-compose:${lottieVersion}")
     implementation("io.coil-kt:coil-compose:${coilComposeVersion}")
+    implementation("com.google.accompanist:accompanist-swiperefresh:$swipeRefreshVersion")
     implementation("com.google.dagger:hilt-android:${daggerHiltVersion}")
 
     kapt("com.google.dagger:hilt-android-compiler:${daggerHiltVersion}")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.02"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")

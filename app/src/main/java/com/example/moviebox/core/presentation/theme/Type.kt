@@ -13,6 +13,13 @@ val fonts = FontFamily(
     Font(R.font.dm_sans),
     Font(R.font.dm_sans_talict, style = FontStyle.Italic)
 )
+val tauri = FontFamily(
+    Font(R.font.tauri),
+    Font(
+        R.font.tauri,
+        style = FontStyle.Italic
+    )
+)
 
 val Typography = Typography(
     bodyMedium = TextStyle(
@@ -30,8 +37,8 @@ val Typography = Typography(
         letterSpacing = 0.5.sp,
     ),
     titleLarge = TextStyle(
-        fontFamily = fonts,
-        fontWeight = FontWeight.SemiBold,
+        fontFamily = tauri,
+        fontWeight = FontWeight.Normal,
         fontSize = 28.sp,
         lineHeight = 28.sp,
         letterSpacing = 0.sp
@@ -57,7 +64,7 @@ val Typography = Typography(
         lineHeight = 16.sp,
         letterSpacing = 0.5.sp
     ),
-    labelMedium =  TextStyle(
+    labelMedium = TextStyle(
         fontFamily = fonts,
         fontWeight = FontWeight.Medium,
         fontSize = 11.sp,

@@ -35,6 +35,8 @@ import com.example.moviebox.core.navigation.Screen
 import com.example.moviebox.core.presentation.composeComponents.LoadingAnimation
 import com.example.moviebox.core.presentation.screenStates.ScreenError
 import com.example.moviebox.core.presentation.screenStates.ScreenState
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
 @Composable
 fun HomeScreenBody(
@@ -45,47 +47,52 @@ fun HomeScreenBody(
     when (state) {
         ScreenState.LOADING -> LoadingAnimation()
         ScreenState.SUCCESS -> HomeScreen(homeViewModel, navController)
-        is ScreenState.FAILURE -> ScreenError { homeViewModel.getHomeScreenData() }
+        is ScreenState.FAILURE -> ScreenError { homeViewModel.initHomeScreenData() }
     }
 }
+
 
 @Composable
 private fun HomeScreen(
     homeViewModel: HomeViewModel,
     navController: NavController
 ) {
+    val isRefreshing by homeViewModel.isRefreshing.collectAsState()
+    val refreshState = rememberSwipeRefreshState(isRefreshing = isRefreshing)
     Column {
         Header(navController)
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            item {
-                LargeCard(homeViewModel, navController)
-            }
-            item {
-                PopularSeries(homeViewModel, navController)
-            }
-            item {
-                TrendingMovies(homeViewModel, navController)
-            }
-            item {
-                TopRatedSeries(homeViewModel, navController)
-            }
-            item {
-                OnAirSeries(homeViewModel, navController)
-            }
-            item {
-                UpComingMovies(homeViewModel, navController)
-            }
-            item {
-                TrendingSeries(homeViewModel, navController)
-            }
-            item {
-                TopRatedMovies(homeViewModel, navController)
-            }
-            item {
-                PopularMovies(homeViewModel, navController )
+        SwipeRefresh(state = refreshState, onRefresh = homeViewModel::refreshHomeScreen) {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxSize()
+            ) {
+                item {
+                    LargeCard(homeViewModel, navController)
+                }
+                item {
+                    PopularSeries(homeViewModel, navController)
+                }
+                item {
+                    TrendingMovies(homeViewModel, navController)
+                }
+                item {
+                    TopRatedSeries(homeViewModel, navController)
+                }
+                item {
+                    OnAirSeries(homeViewModel, navController)
+                }
+                item {
+                    UpComingMovies(homeViewModel, navController)
+                }
+                item {
+                    TrendingSeries(homeViewModel, navController)
+                }
+                item {
+                    TopRatedMovies(homeViewModel, navController)
+                }
+                item {
+                    PopularMovies(homeViewModel, navController)
+                }
             }
         }
     }
@@ -276,7 +283,7 @@ fun PopularMovies(homeViewModel: HomeViewModel, navController: NavController) {
             LazyRow {
                 items(popularMovies) {
                     SmallCard(it.posterPath ?: "")
-                    { navController.navigate(Screen.SerieDetail.createRoute(it.id ?: 0)) }
+                    { navController.navigate(Screen.MovieDetailScreen.createRoute(it.id ?: 0)) }
                 }
             }
         }

@@ -18,6 +18,7 @@ import com.example.moviebox.searchscreen.domain.PopularMoviesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
@@ -34,7 +35,8 @@ class HomeViewModel @Inject constructor(
     private val onAirUseCase: OnAirUseCase,
 ) : ViewModel() {
 
-    val state = MutableStateFlow<ScreenState>(ScreenState.LOADING)
+    private var _state = MutableStateFlow<ScreenState>(ScreenState.LOADING)
+    val state = _state
 
     private val _trendingMovies = MutableStateFlow<List<Movie>>(emptyList())
     val trendingMovies: StateFlow<List<Movie>> get() = _trendingMovies
@@ -63,13 +65,32 @@ class HomeViewModel @Inject constructor(
     private val _popularMovies = MutableStateFlow<List<Movie>>(emptyList())
     val popularMovies = _popularMovies
 
+    private var _isRefreshing = MutableStateFlow(false)
+    val isRefreshing = _isRefreshing.asStateFlow()
+
     init {
-        getHomeScreenData()
+        initHomeScreenData()
     }
 
-    fun getHomeScreenData() {
+    fun initHomeScreenData() {
         viewModelScope.launch {
             state.value = ScreenState.LOADING
+            getData()
+            if (state.value is ScreenState.LOADING)
+                state.value = ScreenState.SUCCESS
+        }
+    }
+
+    fun refreshHomeScreen() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            getData()
+            _isRefreshing.value = false
+        }
+    }
+
+    private fun getData() {
+        viewModelScope.launch {
             awaitAll(
                 launch { getUpcomingMovies() },
                 launch { getTrendingSeries() },
@@ -81,8 +102,6 @@ class HomeViewModel @Inject constructor(
                 launch { getTrendingMovies() },
                 launch { getPopularMovies() }
             )
-            if (state.value is ScreenState.LOADING)
-                state.value = ScreenState.SUCCESS
         }
     }
 

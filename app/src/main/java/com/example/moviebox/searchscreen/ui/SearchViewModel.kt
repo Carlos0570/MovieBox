@@ -1,6 +1,5 @@
 package com.example.moviebox.searchscreen.ui
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviebox.core.data.dataClasses.Movie
@@ -14,7 +13,10 @@ import com.example.moviebox.searchscreen.domain.SearchMovieUseCase
 import com.example.moviebox.searchscreen.domain.SearchPersonUseCase
 import com.example.moviebox.searchscreen.domain.SearchSerieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import java.io.IOException
 import javax.inject.Inject
@@ -28,7 +30,7 @@ class SearchViewModel @Inject constructor(
 ) : ViewModel() {
     val state = MutableStateFlow<SearchScreenState>(SearchScreenState.LOADING)
 
-    private val _searchText = mutableStateOf("")
+    private val _searchText = MutableStateFlow("")
     var searchText = _searchText
 
     private val _movies = MutableStateFlow<List<Movie>>(emptyList())
@@ -42,36 +44,61 @@ class SearchViewModel @Inject constructor(
 
     private val _popularMovies = MutableStateFlow<List<Movie>>(emptyList())
     val popularMovies = _popularMovies
+
     fun init() {
         viewModelScope.launch {
-            state.value = SearchScreenState.LOADING
-            awaitAll(
-                launch { getPopularMovies() }
-            )
-            if (state.value is SearchScreenState.LOADING)
-                state.value = SearchScreenState.SUCCESS
+            initRecommendedMovies()
+            initSearch()
         }
     }
 
-    fun search() {
+    private fun initRecommendedMovies() {
         viewModelScope.launch {
             state.value = SearchScreenState.LOADING
-            awaitAll(
-                launch { searchMovie() },
-                launch { searchSerie() },
-                launch { searchPersons() }
-            )
-            if (_movies.value.isEmpty() && _series.value.isEmpty() && _persons.value.isEmpty())
-                state.value = SearchScreenState.NOT_FOUND
+            awaitAll(launch { getPopularMovies() })
 
             if (state.value is SearchScreenState.LOADING)
-                state.value = SearchScreenState.SUCCESS
+                state.value = SearchScreenState.START_SCREEN
         }
+    }
+
+    @OptIn(FlowPreview::class)
+    private fun initSearch() {
+        viewModelScope.launch {
+            searchText
+                .debounce(100L)
+                .onEach {
+                    if (it.length > 3)
+                        state.value = SearchScreenState.LOADING
+                }
+                .collect {
+                    if (it.length > 3) {
+                        awaitAll(
+                            launch { searchMovie() },
+                            launch { searchSerie() },
+                            launch { searchPersons() }
+                        )
+                        if (state.value is SearchScreenState.LOADING) {
+                            if (_movies.value.isEmpty() && _series.value.isEmpty() && _persons.value.isEmpty()) {
+                                state.value = SearchScreenState.NOT_FOUND
+                            } else {
+                                state.value = SearchScreenState.SUCCESS
+                            }
+                        }
+                    }
+                }
+        }
+    }
+
+    fun onSearchTextChange(text: String) {
+        _searchText.value = text
+        if (text.isEmpty())
+            clearData()
     }
 
     fun clearData() {
         _searchText.value = ""
-        state.value = SearchScreenState.SUCCESS
+        state.value = SearchScreenState.START_SCREEN
         _movies.value = emptyList()
         _series.value = emptyList()
         _persons.value = emptyList()

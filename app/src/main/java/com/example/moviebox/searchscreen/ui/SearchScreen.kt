@@ -68,6 +68,7 @@ fun SearchScreenBody(searchViewModel: SearchViewModel, navController: NavControl
             SearchScreenState.LOADING -> LoadingAnimation()
             SearchScreenState.NOT_FOUND -> NotFoundAnimation()
             SearchScreenState.SUCCESS -> SearchScreen(searchViewModel, navController)
+            SearchScreenState.START_SCREEN -> Recommendations(searchViewModel, navController)
         }
     }
 }
@@ -81,8 +82,6 @@ private fun SearchScreen(
     val series by searchViewModel.series.collectAsState()
     val persons by searchViewModel.persons.collectAsState()
     Column(Modifier.padding(7.dp)) {
-        if (movies.isEmpty() && series.isEmpty() && persons.isEmpty())
-            Recommendations(searchViewModel, navController)
 
         SearchResult(movies, stringResource(id = R.string.movies)) { id ->
             navController.navigate(Screen.MovieDetailScreen.createRoute(id))
@@ -102,6 +101,8 @@ private fun SearchTextField(
     navController: NavController,
     focusRequester: FocusRequester
 ) {
+    val searchText by searchViewModel.searchText.collectAsState()
+
     Row(
         modifier = Modifier.padding(end = 7.dp, top = 7.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -120,22 +121,16 @@ private fun SearchTextField(
             ) {
                 BasicTextField(
                     value = TextFieldValue(
-                        text = searchViewModel.searchText.value,
-                        selection = TextRange(searchViewModel.searchText.value.length)
+                        text = searchText,
+                        selection = TextRange(searchText.length)
                     ),
-                    onValueChange = {
-                        searchViewModel.searchText.value = it.text
-                        if (it.text.length > 3)
-                            searchViewModel.search()
-                        if (it.text.isEmpty())
-                            searchViewModel.clearData()
-                    },
+                    onValueChange = { searchViewModel.onSearchTextChange(it.text) },
                     Modifier
                         .weight(1f)
-                        .padding(start = 7.dp, end = 7.dp)
+                        .padding(start = 8.dp, end = 8.dp)
                         .focusRequester(focusRequester),
                     textStyle = MaterialTheme.typography.titleSmall.copy(color = MaterialTheme.colorScheme.background),
-                    maxLines = 1
+                    maxLines = 1,
                 )
                 Box(
                     Modifier
@@ -162,7 +157,7 @@ private fun SearchTextField(
 private fun Recommendations(searchViewModel: SearchViewModel, navController: NavController) {
     val popularMovies by searchViewModel.popularMovies.collectAsState()
     if (popularMovies.isNotEmpty()) {
-        Column {
+        Column(Modifier.padding(7.dp)) {
             Text(
                 text = stringResource(id = R.string.recommendations),
                 style = MaterialTheme.typography.titleMedium,
