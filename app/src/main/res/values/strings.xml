@@ -2,6 +2,7 @@
     <string name="app_name">Movie Box</string>
     <string name="trending_series">Trending Series</string>
     <string name="trending_movies">Trending Movies</string>
+    <string name="trending_persons">Trending Persons</string>
     <string name="popular_series">Popular Series</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="actors">Actors</string>
@@ -16,11 +17,13 @@
     <string name="cast">Cast</string>
     <string name="similar">Similar</string>
     <string name="where_to_watch">Where to watch</string>
+    <string name="trailers">Trailers</string>
     <string name="rent">Rent</string>
     <string name="buy">Buy</string>
     <string name="stream">Stream</string>
     <string name="release_date">Release Date:</string>
     <string name="original_language">Original Language:</string>
+    <string name="genres">Genres: </string>
     <string name="popularity">Popularity</string>
     <string name="recommendations">Recommendations</string>
     <string name="known_for">Known For</string>

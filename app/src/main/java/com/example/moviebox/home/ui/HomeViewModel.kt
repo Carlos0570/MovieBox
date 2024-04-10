@@ -3,6 +3,7 @@ package com.example.moviebox.home.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviebox.core.data.dataClasses.Movie
+import com.example.moviebox.core.data.dataClasses.Person
 import com.example.moviebox.core.data.dataClasses.Serie
 import com.example.moviebox.core.network.Result
 import com.example.moviebox.core.presentation.screenStates.ScreenState
@@ -12,6 +13,7 @@ import com.example.moviebox.home.domain.PopularSeriesUseCase
 import com.example.moviebox.home.domain.TopRatedMoviesUseCase
 import com.example.moviebox.home.domain.TopRatedSeriesUseCase
 import com.example.moviebox.home.domain.TrendingMoviesUseCase
+import com.example.moviebox.home.domain.TrendingPersonsUseCase
 import com.example.moviebox.home.domain.TrendingSeriesUseCase
 import com.example.moviebox.home.domain.UpComingMoviesUseCase
 import com.example.moviebox.searchscreen.domain.PopularMoviesUseCase
@@ -31,6 +33,7 @@ class HomeViewModel @Inject constructor(
     private val topRatedSeriesUseCase: TopRatedSeriesUseCase,
     private val upComingMoviesUseCase: UpComingMoviesUseCase,
     private val topRatedMoviesUseCase: TopRatedMoviesUseCase,
+    private val trendingPersonsUseCase: TrendingPersonsUseCase,
     val popularMoviesUseCase: PopularMoviesUseCase,
     private val onAirUseCase: OnAirUseCase,
 ) : ViewModel() {
@@ -64,6 +67,9 @@ class HomeViewModel @Inject constructor(
 
     private val _popularMovies = MutableStateFlow<List<Movie>>(emptyList())
     val popularMovies = _popularMovies
+
+    private val _trendingPersons = MutableStateFlow<List<Person>>(emptyList())
+    var trendingPersons = _trendingPersons
 
     private var _isRefreshing = MutableStateFlow(false)
     val isRefreshing = _isRefreshing.asStateFlow()
@@ -100,7 +106,8 @@ class HomeViewModel @Inject constructor(
                 launch { getTopRatedSeries() },
                 launch { getPopularSeries() },
                 launch { getTrendingMovies() },
-                launch { getPopularMovies() }
+                launch { getPopularMovies() },
+                launch { getTrendingPersons() }
             )
         }
     }
@@ -112,6 +119,16 @@ class HomeViewModel @Inject constructor(
                     state.value = ScreenState.FAILURE(result.errorMessage)
 
             is Result.Success -> _topRatedMovies.value = result.data
+        }
+    }
+
+    private suspend fun getTrendingPersons() {
+        when (val result = trendingPersonsUseCase()) {
+            is Result.Error ->
+                if (result.exception is IOException)
+                    state.value = ScreenState.FAILURE(result.errorMessage)
+
+            is Result.Success -> _trendingPersons.value = result.data
         }
     }
 

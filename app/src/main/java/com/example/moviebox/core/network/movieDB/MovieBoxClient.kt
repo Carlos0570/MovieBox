@@ -1,4 +1,4 @@
-package com.example.moviebox.core.network
+package com.example.moviebox.core.network.movieDB
 
 import com.example.moviebox.core.data.dataClasses.Movie
 import com.example.moviebox.core.data.dataClasses.Serie
@@ -6,6 +6,7 @@ import com.example.moviebox.core.data.dataClasses.Credits
 import com.example.moviebox.core.data.dataClasses.MovieProvidersResponse
 import com.example.moviebox.core.data.dataClasses.MovieBoxResponse
 import com.example.moviebox.core.data.dataClasses.Person
+import com.example.moviebox.core.data.dataClasses.Trailer
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -57,6 +58,9 @@ interface MovieBoxClient {
     @GET("tv/on_the_air?language=en-US&page=1")
     suspend fun onTheAir(): Response<MovieBoxResponse<Serie>>
 
+    @GET("trending/person/day?language=en-US")
+    suspend fun getTrendingPerson(): Response<MovieBoxResponse<Person>>
+
     @GET("person/{person_id}/combined_credits")
     suspend fun getPersonCredits(@Path("person_id") personId: Int): Response<Credits>
 
@@ -83,4 +87,10 @@ interface MovieBoxClient {
         @Query("query") query: String,
         @Query("language") language: String = "en-US"
     ): Response<MovieBoxResponse<Person>>
+
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieTrailers(@Path("movie_id") movieId: Int): Response<MovieBoxResponse<Trailer>>
+
+    @GET("tv/{series_id}/videos")
+    suspend fun getSerieTrailers(@Path("series_id") serieId: Int): Response<MovieBoxResponse<Trailer>>
 }

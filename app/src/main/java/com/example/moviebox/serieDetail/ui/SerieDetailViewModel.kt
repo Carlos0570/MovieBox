@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.moviebox.core.data.dataClasses.Cast
 import com.example.moviebox.core.data.dataClasses.Serie
 import com.example.moviebox.core.data.dataClasses.ProvidersByCountry
+import com.example.moviebox.core.data.dataClasses.Trailer
 import com.example.moviebox.core.network.Result
 import com.example.moviebox.core.presentation.screenStates.ScreenState
 import com.example.moviebox.serieDetail.domain.SerieCreditsUseCase
@@ -16,6 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.example.moviebox.core.util.awaitAll
+import com.example.moviebox.serieDetail.domain.SerieTrailersUseCase
 import java.io.IOException
 
 @HiltViewModel
@@ -23,7 +25,8 @@ class SerieDetailViewModel @Inject constructor(
     private val serieDetailUseCase: SerieDetailUseCase,
     private val serieCreditsUseCase: SerieCreditsUseCase,
     private val similarSeriesUseCase: SimilarSeriesUseCase,
-    private val seriesProvidersUseCase: SerieProvidersUseCase
+    private val seriesProvidersUseCase: SerieProvidersUseCase,
+    private val serieTrailersUseCase: SerieTrailersUseCase
 ) : ViewModel() {
 
     val state = MutableStateFlow<ScreenState>(ScreenState.LOADING)
@@ -40,6 +43,15 @@ class SerieDetailViewModel @Inject constructor(
     private val _serieProviders = MutableStateFlow<ProvidersByCountry?>(null)
     val serieProviders = _serieProviders
 
+    private val _trailers = MutableStateFlow<List<Trailer>>(emptyList())
+    var trailers = _trailers
+
+    private val _trailerId = MutableStateFlow<String?>(null)
+    val trailerId = _trailerId
+
+    private val _showTrailer = MutableStateFlow(false)
+    var showTrailer = _showTrailer
+
     fun initSerieDetail(serieId: Int) {
         viewModelScope.launch {
             state.value = ScreenState.LOADING
@@ -47,10 +59,30 @@ class SerieDetailViewModel @Inject constructor(
                 launch { getSerieDetail(serieId) },
                 launch { getSerieCredits(serieId) },
                 launch { getSimilarSeries(serieId) },
-                launch { getSerieProviders(serieId) }
+                launch { getSerieProviders(serieId) },
+                launch { getSerieTrailers(serieId) }
             )
             if (state.value is ScreenState.LOADING)
                 state.value = ScreenState.SUCCESS
+        }
+    }
+
+    fun showMovieTrailer(trailerId: String) {
+        _showTrailer.value = true
+        _trailerId.value = trailerId
+    }
+
+    fun dismissTrailer() {
+        _showTrailer.value = false
+        _trailerId.value = null
+    }
+
+    private suspend fun getSerieTrailers(serieId: Int) {
+        when (val result = serieTrailersUseCase(serieId)) {
+            is Result.Error -> if (result.exception is IOException)
+                state.value = ScreenState.FAILURE(result.errorMessage)
+
+            is Result.Success -> trailers.value = result.data
         }
     }
 

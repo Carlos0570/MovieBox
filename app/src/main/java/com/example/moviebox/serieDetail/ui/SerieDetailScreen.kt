@@ -10,20 +10,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -34,9 +35,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.moviebox.R
-import com.example.moviebox.core.data.dataClasses.Cast
 import com.example.moviebox.core.data.dataClasses.Serie
-import com.example.moviebox.core.data.dataClasses.ProvidersByCountry
+import com.example.moviebox.core.data.dataClasses.Trailer
 import com.example.moviebox.core.navigation.Screen
 import com.example.moviebox.core.presentation.composeComponents.LoadingAnimation
 import com.example.moviebox.core.presentation.composeComponents.MediaItemCast
@@ -45,6 +45,8 @@ import com.example.moviebox.core.presentation.screenStates.ScreenError
 import com.example.moviebox.core.presentation.screenStates.ScreenState
 import com.example.moviebox.core.presentation.composeComponents.WhereToWatch
 import com.example.moviebox.core.presentation.composeComponents.SimilarMediaItems
+import com.example.moviebox.moviedetail.ui.TrailerCard
+import com.example.moviebox.youtubePlayer.ui.YoutubeScreen
 
 @Composable
 fun SerieDetailScreenBody(
@@ -70,9 +72,8 @@ private fun SerieDetailScreen(
 ) {
     val listState = rememberLazyListState()
     val serieDetail by serieDetailViewModel.serieDetail.collectAsState()
-    val serieCast by serieDetailViewModel.serieCast.collectAsState()
-    val similarSeries by serieDetailViewModel.similarSeries.collectAsState()
-    val serieProviders by serieDetailViewModel.serieProviders.collectAsState()
+    val trailerId by serieDetailViewModel.trailerId.collectAsState()
+    val showTrailer by serieDetailViewModel.showTrailer.collectAsState()
 
     LazyColumn(
         state = listState,
@@ -84,13 +85,15 @@ private fun SerieDetailScreen(
         item {
             DetailsTab(
                 serieDetail = serieDetail,
-                serieCast = serieCast,
-                similarSeries = similarSeries,
-                serieProviders = serieProviders,
-                navController = navController
+                navController = navController,
+                serieDetailViewModel = serieDetailViewModel
             )
         }
     }
+    if (showTrailer)
+        trailerId?.let {
+            YoutubeScreen(videoId = it) { serieDetailViewModel.dismissTrailer() }
+        }
 }
 
 
@@ -98,22 +101,27 @@ private fun SerieDetailScreen(
 @Composable
 private fun DetailsTab(
     serieDetail: Serie?,
-    serieCast: List<Cast>,
-    similarSeries: List<Serie>,
-    serieProviders: ProvidersByCountry?,
-    navController: NavController
+    navController: NavController,
+    serieDetailViewModel: SerieDetailViewModel
 ) {
+    val serieCast by serieDetailViewModel.serieCast.collectAsState()
+    val similarSeries by serieDetailViewModel.similarSeries.collectAsState()
+    val serieProviders by serieDetailViewModel.serieProviders.collectAsState()
+    val trailers by serieDetailViewModel.trailers.collectAsState()
+
     val tabTitles = mutableListOf<Pair<Int, String>>()
     tabTitles.add(Pair(0, stringResource(R.string.overview)))
+    if (trailers.isNotEmpty())
+        tabTitles.add(Pair(tabTitles.size, stringResource(id = R.string.trailers)))
+    if (serieProviders?.CA != null)
+        tabTitles.add(Pair(tabTitles.size, stringResource(R.string.where_to_watch)))
     if (serieCast.isNotEmpty())
         tabTitles.add(Pair(tabTitles.size, stringResource(R.string.cast)))
     if (similarSeries.isNotEmpty())
         tabTitles.add(Pair(tabTitles.size, stringResource(R.string.similar)))
-    if (serieProviders?.CA != null)
-        tabTitles.add(Pair(tabTitles.size, stringResource(R.string.where_to_watch)))
 
     val pagersState = rememberPagerState { tabTitles.size }
-    var tabIndex by remember { mutableStateOf(0) }
+    var tabIndex by remember { mutableIntStateOf(0) }
 
     LaunchedEffect(tabIndex) {
         pagersState.animateScrollToPage(tabIndex)
@@ -122,7 +130,7 @@ private fun DetailsTab(
         if (pagersState.isScrollInProgress.not())
             tabIndex = pagersState.currentPage
     }
-    Divider(Modifier.height(20.dp), color = MaterialTheme.colorScheme.background)
+    HorizontalDivider(Modifier.height(5.dp), color = MaterialTheme.colorScheme.background)
     if (tabTitles.isNotEmpty())
         Surface(
             modifier = Modifier
@@ -135,7 +143,10 @@ private fun DetailsTab(
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.background)
             ) {
-                TabRow(selectedTabIndex = tabIndex) {
+                ScrollableTabRow(
+                    selectedTabIndex = tabIndex,
+                    containerColor = MaterialTheme.colorScheme.background
+                ) {
                     tabTitles.forEachIndexed { index, title ->
                         Tab(
                             content = {
@@ -143,7 +154,7 @@ private fun DetailsTab(
                                     text = title.second,
                                     modifier = Modifier
                                         .background(MaterialTheme.colorScheme.background)
-                                        .padding(bottom = 5.dp),
+                                        .padding(5.dp),
                                     style = MaterialTheme.typography.titleSmall,
                                     textAlign = TextAlign.Center
                                 )
@@ -169,6 +180,13 @@ private fun DetailsTab(
                         when (tabTitles[index].second) {
                             stringResource(R.string.overview) -> {
                                 SerieOverView(serieDetail)
+                            }
+
+                            stringResource(R.string.trailers) -> {
+                                TrailersTab(
+                                    trailers = trailers,
+                                    serieDetailViewModel = serieDetailViewModel
+                                )
                             }
 
                             stringResource(R.string.cast) -> {
@@ -228,7 +246,16 @@ private fun SerieOverView(serieDetail: Serie?) {
                 style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.End
             )
+
         }
     }
 }
 
+@Composable
+private fun TrailersTab(trailers: List<Trailer>, serieDetailViewModel: SerieDetailViewModel) {
+    LazyColumn {
+        items(trailers) {
+            TrailerCard(trailer = it) { key -> serieDetailViewModel.showMovieTrailer(key) }
+        }
+    }
+}

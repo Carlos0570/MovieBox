@@ -51,7 +51,6 @@ fun HomeScreenBody(
     }
 }
 
-
 @Composable
 private fun HomeScreen(
     homeViewModel: HomeViewModel,
@@ -91,6 +90,9 @@ private fun HomeScreen(
                     TopRatedMovies(homeViewModel, navController)
                 }
                 item {
+                    TrendingPersons(homeViewModel, navController)
+                }
+                item {
                     PopularMovies(homeViewModel, navController)
                 }
             }
@@ -99,10 +101,30 @@ private fun HomeScreen(
 }
 
 @Composable
+private fun TrendingPersons(homeViewModel: HomeViewModel, navController: NavController) {
+    val trendingMovies by homeViewModel.trendingPersons.collectAsState()
+    if (trendingMovies.isNotEmpty())
+        Column {
+            Text(
+                text = stringResource(R.string.trending_persons),
+                style = MaterialTheme.typography.titleMedium
+            )
+            LazyRow {
+                items(trendingMovies) {
+                    if (it.profilePath.isNullOrBlank().not())
+                        MediumCard(it.profilePath ?: "", it.name) {
+                            navController.navigate(Screen.CastDetail.createRoute(it.id ?: 0))
+                        }
+                }
+            }
+        }
+}
+
+@Composable
 private fun Header(navController: NavController) {
     val showInfoDialog = remember { mutableStateOf(false) }
     if (showInfoDialog.value)
-        AboutDialog(onDismissRequest = { showInfoDialog.value = false })
+        AboutDialog(ignoredOnDismissRequest = { showInfoDialog.value = false })
 
     Spacer(modifier = Modifier.height(6.dp))
     Row(

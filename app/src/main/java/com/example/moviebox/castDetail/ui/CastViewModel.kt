@@ -45,7 +45,7 @@ class CastViewModel @Inject constructor(
             is Result.Error -> if (result.exception is IOException)
                 state.value = ScreenState.FAILURE(result.errorMessage)
 
-            is Result.Success -> personCredits.value = result.data as Credits?
+            is Result.Success -> personCredits.value = result.data
         }
     }
 
@@ -54,7 +54,7 @@ class CastViewModel @Inject constructor(
             is Result.Error -> if (result.exception is IOException)
                 state.value = ScreenState.FAILURE(result.errorMessage)
 
-            is Result.Success -> personDetails.value = result.data as Person?
+            is Result.Success -> personDetails.value = result.data 
         }
     }
 }

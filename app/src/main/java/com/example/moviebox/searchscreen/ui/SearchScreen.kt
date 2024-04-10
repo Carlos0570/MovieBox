@@ -8,9 +8,9 @@ import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -82,7 +82,6 @@ private fun SearchScreen(
     val series by searchViewModel.series.collectAsState()
     val persons by searchViewModel.persons.collectAsState()
     Column(Modifier.padding(7.dp)) {
-
         SearchResult(movies, stringResource(id = R.string.movies)) { id ->
             navController.navigate(Screen.MovieDetailScreen.createRoute(id))
         }
@@ -102,7 +101,6 @@ private fun SearchTextField(
     focusRequester: FocusRequester
 ) {
     val searchText by searchViewModel.searchText.collectAsState()
-
     Row(
         modifier = Modifier.padding(end = 7.dp, top = 7.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -268,13 +266,11 @@ private fun SearchPersonResult(persons: List<Person>, onClick: (Int) -> Unit) {
     }
 }
 
-
 @Composable
 private fun PersonCard(person: Person, onClick: () -> Unit) {
     if (person.profilePath != null)
         Box(
             Modifier
-                .size(width = 160.dp, height = 200.dp)
                 .padding(4.dp)
                 .clip(RoundedCornerShape(5.dp))
                 .background(MaterialTheme.colorScheme.tertiary)
@@ -293,8 +289,8 @@ private fun PersonCard(person: Person, onClick: () -> Unit) {
                     text = person.name ?: "",
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier
-                        .width(150.dp)
-                        .padding(start = 2.dp),
+                        .padding(start = 5.dp)
+                        .fillMaxWidth(),
                     maxLines = 1,
                     fontWeight = FontWeight.SemiBold,
                 )

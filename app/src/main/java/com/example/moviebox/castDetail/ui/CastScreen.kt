@@ -15,7 +15,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Tab
@@ -25,7 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -59,7 +59,7 @@ fun CastDetailScreenBody(
         ScreenState.LOADING -> LoadingAnimation()
         ScreenState.SUCCESS -> CastScreen(navController, castViewModel)
         is ScreenState.FAILURE -> ScreenError { castViewModel.initCastDetail(castId) }
-    }
+   }
 }
 
 @Composable
@@ -100,13 +100,13 @@ private fun DetailsTab(
     val pagersState = rememberPagerState {
         tabTitles.size
     }
-    var tabIndex by remember { mutableStateOf(0) }
+    var tabIndex by remember { mutableIntStateOf(0) }
     LaunchedEffect(tabIndex) { pagersState.animateScrollToPage(tabIndex) }
     LaunchedEffect(pagersState.currentPage, pagersState.isScrollInProgress) {
         if (pagersState.isScrollInProgress.not())
             tabIndex = pagersState.currentPage
     }
-    Divider(Modifier.height(20.dp), color = MaterialTheme.colorScheme.background)
+    HorizontalDivider(Modifier.height(20.dp), color = MaterialTheme.colorScheme.background)
     if (tabTitles.isNotEmpty())
         Surface(
             modifier = Modifier

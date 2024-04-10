@@ -1,4 +1,4 @@
-package com.example.moviebox.core.network
+package com.example.moviebox.core.network.movieDB
 
 import com.example.moviebox.core.data.dataClasses.Cast
 import com.example.moviebox.core.data.dataClasses.Credits
@@ -6,6 +6,9 @@ import com.example.moviebox.core.data.dataClasses.Movie
 import com.example.moviebox.core.data.dataClasses.Person
 import com.example.moviebox.core.data.dataClasses.Serie
 import com.example.moviebox.core.data.dataClasses.ProvidersByCountry
+import com.example.moviebox.core.data.dataClasses.Trailer
+import com.example.moviebox.core.network.Result
+import com.example.moviebox.core.network.safeAPICall
 import javax.inject.Inject
 
 class MoviesService @Inject constructor(private val movieBoxClient: MovieBoxClient) {
@@ -59,6 +62,9 @@ class MoviesService @Inject constructor(private val movieBoxClient: MovieBoxClie
         movieBoxClient.topRatedSeries().body()?.results ?: emptyList()
     }
 
+    suspend fun getTrendingPersons() : Result<List<Person>> = safeAPICall {
+        movieBoxClient.getTrendingPerson().body()?.results ?: emptyList()
+    }
     suspend fun getSerieDetail(serieId: Int): Result<Serie?> = safeAPICall {
         movieBoxClient.getSerieDetail(serieId).body()
     }
@@ -94,6 +100,14 @@ class MoviesService @Inject constructor(private val movieBoxClient: MovieBoxClie
 
     suspend fun searchPerson(personName: String): Result<List<Person>> = safeAPICall {
         movieBoxClient.searchPerson(personName).body()?.results ?: emptyList()
+    }
+
+    suspend fun getMovieTrailers(id: Int): Result<List<Trailer>> = safeAPICall {
+        movieBoxClient.getMovieTrailers(id).body()?.results ?: emptyList()
+    }
+
+    suspend fun getSerieTrailers(serieId: Int): Result<List<Trailer>> = safeAPICall {
+        movieBoxClient.getSerieTrailers(serieId).body()?.results ?: emptyList()
     }
 }
 

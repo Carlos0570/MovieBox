@@ -27,7 +27,8 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "API_KEY", apiKeyProperties["API_KEY"] as String)
+        buildConfigField("String", "MOVIE_DB_KEY", apiKeyProperties["MOVIE_DB_KEY"] as String)
+        buildConfigField("String", "YOUTUBE_KEY", apiKeyProperties["YOUTUBE_KEY"] as String)
     }
 
     buildTypes {
@@ -70,6 +71,7 @@ dependencies {
     val splashScreenVersion = "1.0.1"
     val lottieVersion = "6.4.0"
     val swipeRefreshVersion = "0.27.0"
+    val youtubePlayerVersion = "12.1.0"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
@@ -97,6 +99,7 @@ dependencies {
     implementation("com.airbnb.android:lottie-compose:${lottieVersion}")
     implementation("io.coil-kt:coil-compose:${coilComposeVersion}")
     implementation("com.google.accompanist:accompanist-swiperefresh:$swipeRefreshVersion")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:$youtubePlayerVersion")
     implementation("com.google.dagger:hilt-android:${daggerHiltVersion}")
 
     kapt("com.google.dagger:hilt-android-compiler:${daggerHiltVersion}")
