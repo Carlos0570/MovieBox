@@ -37,4 +37,5 @@
     <string name="my_email">carlos.glz12130570@gmail.com</string>
     <string name="image_url_500">https://image.tmdb.org/t/p/w500/</string>
     <string name="image_url_200">https://image.tmdb.org/t/p/w200/</string>
+    <string name="image_url_original">https://image.tmdb.org/t/p/original/</string>
 </resources>

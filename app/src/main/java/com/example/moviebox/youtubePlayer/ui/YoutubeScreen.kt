@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -48,8 +49,9 @@ fun YoutubeScreen(videoId: String, onDismiss: () -> Unit) {
 private fun YoutubePlayer(videoId: String) {
     Box(
         Modifier
-            .padding(6.dp)
+            .padding(7.dp)
             .clip(RoundedCornerShape(5.dp))
+            .shadow(10.dp)
             .background(MaterialTheme.colorScheme.tertiary)
     ) {
         AndroidView(
@@ -85,7 +87,7 @@ private fun GradientBox(modifier: Modifier) {
     val gradient = Brush.radialGradient(
         0.0f to MaterialTheme.colorScheme.background,
         1.0f to Color.Transparent,
-        radius = 2300.0f
+        radius = 2700.0f
     )
     Box(modifier = modifier.background(gradient))
 }

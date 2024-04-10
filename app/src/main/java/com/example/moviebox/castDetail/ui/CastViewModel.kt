@@ -54,7 +54,7 @@ class CastViewModel @Inject constructor(
             is Result.Error -> if (result.exception is IOException)
                 state.value = ScreenState.FAILURE(result.errorMessage)
 
-            is Result.Success -> personDetails.value = result.data 
+            is Result.Success -> personDetails.value = result.data
         }
     }
 }

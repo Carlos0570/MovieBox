@@ -47,11 +47,11 @@ fun LargeCard(homeViewModel: HomeViewModel, navController: NavController) {
                     }
             ) {
                 GlideImage(
-                    model = "${stringResource(id = R.string.image_url_500)}${recommendedMovie?.posterPath}",
+                    model = "${stringResource(id = R.string.image_url_original)}${recommendedMovie?.posterPath}",
                     contentDescription = "",
                     modifier = Modifier
                         .height(380.dp)
-                        .width(280.dp),
+                        .width(290.dp),
                     contentScale = ContentScale.Crop
                 )
             }

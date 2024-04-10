@@ -271,6 +271,7 @@ private fun PersonCard(person: Person, onClick: () -> Unit) {
     if (person.profilePath != null)
         Box(
             Modifier
+                .width(110.dp)
                 .padding(4.dp)
                 .clip(RoundedCornerShape(5.dp))
                 .background(MaterialTheme.colorScheme.tertiary)
@@ -289,8 +290,8 @@ private fun PersonCard(person: Person, onClick: () -> Unit) {
                     text = person.name ?: "",
                     style = MaterialTheme.typography.titleSmall,
                     modifier = Modifier
-                        .padding(start = 5.dp)
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(start = 5.dp),
                     maxLines = 1,
                     fontWeight = FontWeight.SemiBold,
                 )

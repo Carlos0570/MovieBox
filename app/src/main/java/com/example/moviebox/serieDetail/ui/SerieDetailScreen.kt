@@ -255,6 +255,7 @@ private fun SerieOverView(serieDetail: Serie?) {
 private fun TrailersTab(trailers: List<Trailer>, serieDetailViewModel: SerieDetailViewModel) {
     LazyColumn {
         items(trailers) {
+            if (it.youtubeData?.items?.firstOrNull() != null)
             TrailerCard(trailer = it) { key -> serieDetailViewModel.showMovieTrailer(key) }
         }
     }

@@ -87,7 +87,6 @@ private fun MovieDetailScreen(
     val showTrailer by movieDetailViewModel.showTrailer.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()) {
-
         LazyColumn(
             state = listState,
             modifier = Modifier.fillMaxSize()
@@ -104,7 +103,6 @@ private fun MovieDetailScreen(
                 YoutubeScreen(videoId = it) { movieDetailViewModel.dismissTrailer() }
             }
     }
-
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -275,14 +273,17 @@ private fun MovieDescription(movieDetail: Movie?) {
 private fun TrailersTab(trailers: List<Trailer>, movieDetailViewModel: MovieDetailViewModel) {
     LazyColumn {
         items(trailers) { trailer ->
-            TrailerCard(trailer = trailer) {key -> movieDetailViewModel.showMovieTrailer(key) }
+            if (trailer.youtubeData?.items?.firstOrNull() != null)
+                TrailerCard(trailer = trailer) { key ->
+                    movieDetailViewModel.showMovieTrailer(key)
+                }
         }
     }
 }
 
 @Composable
 fun TrailerCard(trailer: Trailer, showTrailer: (String) -> Unit) {
-    trailer.youtubeData?.items?.first()?.snippet.let {
+    trailer.youtubeData?.items?.firstOrNull()?.snippet.let {
         Row(
             Modifier.clickable { trailer.key?.let { key -> showTrailer(key) } }) {
             Box(

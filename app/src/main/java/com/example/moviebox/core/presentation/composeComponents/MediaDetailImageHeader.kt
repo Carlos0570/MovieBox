@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,17 +43,21 @@ import com.example.moviebox.core.data.dataClasses.MediaItem
 @Composable
 fun MediaItemImageHeader(mediaItem: MediaItem?, mediaName: String, navController: NavController) {
     var sizeImage by remember { mutableStateOf(IntSize.Zero) }
-    Box(
+    Box(contentAlignment = Alignment.BottomStart,
         modifier = Modifier
             .fillMaxWidth()
             .onGloballyPositioned { sizeImage = it.size }
     ) {
         MediaBackgroundImage(mediaItem)
-        GradientBox(sizeImage, Modifier.matchParentSize())
+
         IconButton(
-            onClick = { navController.popBackStack() }, modifier = Modifier
+            onClick = { navController.popBackStack() },
+            modifier = Modifier
+                .size(45.dp)
                 .padding(6.dp)
-                .align(Alignment.TopStart)
+                .align(Alignment.TopStart),
+            colors = IconButtonDefaults.iconButtonColors()
+                .copy(containerColor = MaterialTheme.colorScheme.background.copy(alpha = 0.6f))
         ) {
             Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = null)
         }
@@ -72,7 +78,7 @@ fun MediaItemImageHeader(mediaItem: MediaItem?, mediaName: String, navController
 private fun MediaBackgroundImage(serieDetail: MediaItem?) {
     serieDetail?.let {
         GlideImage(
-            model = "${stringResource(R.string.image_url_500)}${serieDetail.backdropPath ?: serieDetail.posterPath}",
+            model = "${stringResource(R.string.image_url_original)}${serieDetail.backdropPath ?: serieDetail.posterPath}",
             contentDescription = "",
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -83,34 +89,39 @@ private fun MediaBackgroundImage(serieDetail: MediaItem?) {
 }
 
 @Composable
-private fun GradientBox(sizeImage: IntSize, modifier: Modifier) {
-    val gradient = Brush
-        .verticalGradient(
-            colors = listOf(
-                Color.Transparent,
-                MaterialTheme.colorScheme.background
-            ),
-            startY = sizeImage.height.toFloat() / 2,
-            endY = sizeImage.height.toFloat()
+fun GradientBox() {
+    val gradient = Brush.verticalGradient(
+        colors = listOf(
+            Color.Transparent,
+            MaterialTheme.colorScheme.background
         )
-    Box(modifier = modifier.background(gradient))
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .background(gradient)
+    )
 }
 
 @Composable
 private fun MediaTitle(mediaName: String, score: Double?, modifier: Modifier) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = mediaName,
-            style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier
-                .heightIn(0.dp, 232.dp)
-                .widthIn(0.dp, 270.dp)
-        )
-        UserScore(score)
+    Box {
+        GradientBox()
+        Row(
+            modifier = modifier,
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = mediaName,
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier
+                    .heightIn(0.dp, 232.dp)
+                    .widthIn(0.dp, 270.dp)
+            )
+            UserScore(score)
+        }
     }
 }
 

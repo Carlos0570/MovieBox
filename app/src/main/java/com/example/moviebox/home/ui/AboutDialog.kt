@@ -28,9 +28,9 @@ import com.example.moviebox.R
 
 @Composable
 fun AboutDialog(
-    ignoredOnDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit
 ) {
-    Dialog(onDismissRequest = { ignoredOnDismissRequest() }) {
+    Dialog(onDismissRequest = { onDismissRequest() }) {
         val imageLoader = ImageLoader.Builder(LocalContext.current)
             .components { add(SvgDecoder.Factory()) }
             .build()
@@ -68,7 +68,7 @@ fun AboutDialog(
                     textAlign = TextAlign.Center
                 )
                 Button(
-                    onClick = { ignoredOnDismissRequest() },
+                    onClick = { onDismissRequest() },
                     modifier = Modifier.padding(8.dp),
                 ) {
                     Text(stringResource(R.string.close))

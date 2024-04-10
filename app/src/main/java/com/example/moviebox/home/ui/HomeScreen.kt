@@ -124,7 +124,7 @@ private fun TrendingPersons(homeViewModel: HomeViewModel, navController: NavCont
 private fun Header(navController: NavController) {
     val showInfoDialog = remember { mutableStateOf(false) }
     if (showInfoDialog.value)
-        AboutDialog(ignoredOnDismissRequest = { showInfoDialog.value = false })
+        AboutDialog(onDismissRequest = { showInfoDialog.value = false })
 
     Spacer(modifier = Modifier.height(6.dp))
     Row(
