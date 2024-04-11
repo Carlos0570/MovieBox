@@ -32,11 +32,9 @@ MovieBox is your one-stop destination for discovering trending movies and series
 * Navigation: Implementing Jetpack Navigation for seamless navigation between different screens within the app.  
 * Jetpack Compose: Embracing the future of UI development with declarative and reactive UI programming.  
 * Retrofit: Utilizing Retrofit for efficient networking capabilities, enabling seamless communication with external APIs.
-
-App Video:  
-https://github.com/Carlos0570/MovieBox/assets/119904210/b8238e82-2a76-421f-9bff-5ba354ef68ae
-
+  
 ## Home:
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/72f4557f-5d20-4ddb-a33f-c8069007c3df" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/11f80d5a-1808-4f10-9ede-b3ef6183d174" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/620c5436-fde5-40db-bdac-ab131b59b18c" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/545a4afa-d3ec-4fbc-8408-0f84031605b4" width="184.2" height="409.6">
@@ -46,6 +44,7 @@ https://github.com/Carlos0570/MovieBox/assets/119904210/b8238e82-2a76-421f-9bff-
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/fdaa6880-f075-493c-badd-79a48bc701f7" width="184.2" height="409.6">
 
 ## Media Details:
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/42b00f3e-38c4-4d5b-b451-2428440a0b63" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/05241efa-40d5-4384-9278-762d113b0e65" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9d8a0d3a-2398-43f9-bd65-908eaefaf7ee" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/b66d3b2e-9b28-4c5a-850d-8dc5dfdfe114" width="184.2" height="409.6">
@@ -54,12 +53,15 @@ https://github.com/Carlos0570/MovieBox/assets/119904210/b8238e82-2a76-421f-9bff-
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/af2ff637-b992-405b-99e2-0032d46efcf2" width="184.2" height="409.6">
 
 ## Cast Details:
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0ec8f099-a8f7-4285-a927-5b7fda0fa8d2" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/adc2f90b-6d44-4c9e-8eeb-cc20fbd27555" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/374e6268-5777-4e3f-babe-a7bb827ade27" width="184.2" height="409.6">
 
 ## Search Screen:
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d4e3789b-8065-4640-aee9-70ec659697ca" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/a0de7303-86da-4d93-aba1-f2bb5e23e651" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0c6be577-00e3-4f2a-b64b-b72188556c95" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d811c3af-d586-485b-a9e6-32230b3e4d40" width="184.2" height="409.6">
 
 ## Configuration
 To enable the functionality of the application, it is imperative to generate an API key from The Movie Database (TMDb). To obtain this key, please follow the instructions outlined in the following link: [TMDb API Key Generation.](https://developer.themoviedb.org/reference/intro/authentication#api-key-quick-start)  
