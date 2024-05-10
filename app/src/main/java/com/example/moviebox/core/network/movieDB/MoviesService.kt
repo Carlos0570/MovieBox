@@ -2,6 +2,7 @@ package com.example.moviebox.core.network.movieDB
 
 import com.example.moviebox.core.data.dataClasses.Cast
 import com.example.moviebox.core.data.dataClasses.Credits
+import com.example.moviebox.core.data.dataClasses.MediaImage
 import com.example.moviebox.core.data.dataClasses.Movie
 import com.example.moviebox.core.data.dataClasses.Person
 import com.example.moviebox.core.data.dataClasses.Serie
@@ -108,6 +109,14 @@ class MoviesService @Inject constructor(private val movieBoxClient: MovieBoxClie
 
     suspend fun getSerieTrailers(serieId: Int): Result<List<Trailer>> = safeAPICall {
         movieBoxClient.getSerieTrailers(serieId).body()?.results ?: emptyList()
+    }
+
+    suspend fun getMovieImages(movieId : Int) : Result<MediaImage?> = safeAPICall {
+        movieBoxClient.getMovieImages(movieId).body()
+    }
+
+    suspend fun getSerieImages(serieId: Int) : Result<MediaImage?> = safeAPICall {
+        movieBoxClient.getSerieImages(serieId).body()
     }
 }
 

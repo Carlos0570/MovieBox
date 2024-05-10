@@ -4,19 +4,19 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.moviebox.home.ui.HomeScreenBody
-import com.example.moviebox.home.ui.HomeViewModel
-import com.example.moviebox.moviedetail.ui.MovieDetailBody
-import com.example.moviebox.moviedetail.ui.MovieDetailViewModel
+import com.example.moviebox.home.HomeScreenBody
+import com.example.moviebox.home.HomeViewModel
+import com.example.moviebox.moviedetail.MovieDetailBody
+import com.example.moviebox.moviedetail.MovieDetailViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
-import com.example.moviebox.castDetail.ui.CastDetailScreenBody
-import com.example.moviebox.castDetail.ui.CastViewModel
-import com.example.moviebox.searchscreen.ui.SearchScreenBody
-import com.example.moviebox.searchscreen.ui.SearchViewModel
-import com.example.moviebox.serieDetail.ui.SerieDetailScreenBody
-import com.example.moviebox.serieDetail.ui.SerieDetailViewModel
+import com.example.moviebox.castDetail.CastDetailScreenBody
+import com.example.moviebox.castDetail.CastViewModel
+import com.example.moviebox.searchscreen.SearchScreenBody
+import com.example.moviebox.searchscreen.SearchViewModel
+import com.example.moviebox.serieDetail.SerieDetailScreenBody
+import com.example.moviebox.serieDetail.SerieDetailViewModel
 
 @Composable
 fun MovieBoxNavigation() {

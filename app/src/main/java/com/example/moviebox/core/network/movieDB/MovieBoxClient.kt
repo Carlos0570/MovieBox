@@ -3,6 +3,7 @@ package com.example.moviebox.core.network.movieDB
 import com.example.moviebox.core.data.dataClasses.Movie
 import com.example.moviebox.core.data.dataClasses.Serie
 import com.example.moviebox.core.data.dataClasses.Credits
+import com.example.moviebox.core.data.dataClasses.MediaImage
 import com.example.moviebox.core.data.dataClasses.MovieProvidersResponse
 import com.example.moviebox.core.data.dataClasses.MovieBoxResponse
 import com.example.moviebox.core.data.dataClasses.Person
@@ -93,4 +94,10 @@ interface MovieBoxClient {
 
     @GET("tv/{series_id}/videos")
     suspend fun getSerieTrailers(@Path("series_id") serieId: Int): Response<MovieBoxResponse<Trailer>>
+
+    @GET("movie/{movie_id}/images")
+    suspend fun getMovieImages(@Path("movie_id") movieId: Int): Response<MediaImage>
+
+    @GET("tv/{series_id}/images")
+    suspend fun getSerieImages(@Path("series_id") serieId: Int): Response<MediaImage>
 }

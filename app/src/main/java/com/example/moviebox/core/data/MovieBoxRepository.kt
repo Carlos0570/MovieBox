@@ -54,6 +54,10 @@ class MovieBoxRepository @Inject constructor(
 
     suspend fun searchPerson(personName: String) = movieDB.searchPerson(personName)
 
+    suspend fun getMovieImages(movieId: Int) = movieDB.getMovieImages(movieId)
+
+    suspend fun getSerieImages(serieId: Int) = movieDB.getSerieImages(serieId)
+
     suspend fun getMovieTrailers(movieId: Int): Result<List<Trailer>> {
         when (val result = movieDB.getMovieTrailers(movieId)) {
             is Result.Error -> return Result.Error(result.exception)
@@ -63,7 +67,7 @@ class MovieBoxRepository @Inject constructor(
                         when (val youtubeData = youtubeAPI.getVideoDetails(it.key.toString())) {
                             is Result.Error -> return Result.Error(youtubeData.exception)
 
-                            is Result.Success ->  it.copy(youtubeData = youtubeData.data.body())
+                            is Result.Success -> it.copy(youtubeData = youtubeData.data.body())
                         }
                     }
                 )
@@ -80,7 +84,7 @@ class MovieBoxRepository @Inject constructor(
                         when (val youtubeData = youtubeAPI.getVideoDetails(it.key.toString())) {
                             is Result.Error -> return Result.Error(youtubeData.exception)
 
-                            is Result.Success ->  it.copy(youtubeData = youtubeData.data.body())
+                            is Result.Success -> it.copy(youtubeData = youtubeData.data.body())
                         }
                     }
                 )

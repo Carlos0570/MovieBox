@@ -1,6 +1,6 @@
-package com.example.moviebox.core.presentation.composeComponents
+package com.example.moviebox.castDetail
 
-import androidx.compose.foundation.background
+import com.example.moviebox.core.data.dataClasses.Person
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,8 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.stringResource
@@ -34,22 +32,21 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.example.moviebox.R
-import com.example.moviebox.core.data.dataClasses.MediaItem
+import com.example.moviebox.core.presentation.composeComponents.GradientBox
 
 @Composable
-fun MediaItemImageHeader(mediaItem: MediaItem?, mediaName: String, navController: NavController) {
+fun PersonImageHeader(person: Person?, navController: NavHostController) {
     var sizeImage by remember { mutableStateOf(IntSize.Zero) }
     Box(contentAlignment = Alignment.BottomStart,
         modifier = Modifier
             .fillMaxWidth()
             .onGloballyPositioned { sizeImage = it.size }
     ) {
-        MediaBackgroundImage(mediaItem)
-
+        MediaBackgroundImage(person)
         IconButton(
             onClick = { navController.popBackStack() },
             modifier = Modifier
@@ -61,12 +58,9 @@ fun MediaItemImageHeader(mediaItem: MediaItem?, mediaName: String, navController
         ) {
             Icon(Icons.AutoMirrored.Outlined.ArrowBack, contentDescription = null)
         }
-
         MediaTitle(
-            mediaName = mediaName,
-            score = mediaItem?.voteAverage,
-            modifier = Modifier
-                .padding(start = 6.dp, end = 6.dp)
+            name = person?.name ?: "", score = person?.popularity, modifier = Modifier
+                .padding(9.dp)
                 .align(Alignment.BottomStart)
                 .fillMaxWidth()
         )
@@ -75,37 +69,22 @@ fun MediaItemImageHeader(mediaItem: MediaItem?, mediaName: String, navController
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun MediaBackgroundImage(serieDetail: MediaItem?) {
-    serieDetail?.let {
-        GlideImage(
-            model = "${stringResource(R.string.image_url_original)}${serieDetail.backdropPath ?: serieDetail.posterPath}",
-            contentDescription = "",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-        )
+private fun MediaBackgroundImage(person: Person?) {
+    person?.let {
+        if (person.profilePath.isNullOrBlank().not())
+            GlideImage(
+                model = "${stringResource(R.string.image_url_original)}${person.profilePath ?: ""}",
+                contentDescription = "",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(320.dp)
+            )
     }
 }
 
 @Composable
-fun GradientBox() {
-    val gradient = Brush.verticalGradient(
-        colors = listOf(
-            Color.Transparent,
-            MaterialTheme.colorScheme.background
-        )
-    )
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .background(gradient)
-    )
-}
-
-@Composable
-private fun MediaTitle(mediaName: String, score: Double?, modifier: Modifier) {
+private fun MediaTitle(name: String, score: Double?, modifier: Modifier) {
     Box {
         GradientBox()
         Row(
@@ -114,24 +93,24 @@ private fun MediaTitle(mediaName: String, score: Double?, modifier: Modifier) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = mediaName,
+                text = name,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier
                     .heightIn(0.dp, 232.dp)
                     .widthIn(0.dp, 270.dp)
             )
-            UserScore(score)
+            Popularity(score)
         }
     }
 }
 
 @Composable
-private fun UserScore(score: Double?) {
+private fun Popularity(score: Double?) {
     score?.let {
         if (it > 0)
             Column(horizontalAlignment = Alignment.End) {
                 Text(
-                    text = stringResource(R.string.user_score),
+                    text = stringResource(R.string.popularity),
                     textAlign = TextAlign.End,
                     style = MaterialTheme.typography.titleSmall,
                     lineHeight = 18.sp

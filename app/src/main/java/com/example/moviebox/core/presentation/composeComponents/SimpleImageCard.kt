@@ -32,7 +32,7 @@ fun SimpleImageCard(posterPath : String?, onClick: () -> Unit) {
         ) {
             Column {
                 AsyncImage(
-                    model = "${stringResource(id = R.string.image_url_200)}${posterPath}",
+                    model = "${stringResource(id = R.string.image_url_500)}${posterPath}",
                     placeholder = null,
                     error = null,
                     contentDescription = "Image",
