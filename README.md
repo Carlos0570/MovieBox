@@ -2,7 +2,6 @@
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/233643ed-62b8-4ff7-a001-14a3ae6c2395" width="180" height="180">
 </p>
 
-
 # 🎬 MovieBox: Your Gateway to Cinematic Exploration  
 
 ## Description:
@@ -34,33 +33,33 @@ MovieBox is your one-stop destination for discovering trending movies and series
 * Retrofit: Utilizing Retrofit for efficient networking capabilities, enabling seamless communication with external APIs.
   
 ## Home:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/72f4557f-5d20-4ddb-a33f-c8069007c3df" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/11f80d5a-1808-4f10-9ede-b3ef6183d174" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/620c5436-fde5-40db-bdac-ab131b59b18c" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/545a4afa-d3ec-4fbc-8408-0f84031605b4" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9efff7fe-9f23-418f-91c3-b012b2bd5d57" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f0570fbf-2988-417b-a875-9563fab242eb" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/86c9f1ad-fe74-4416-a83a-5fcea48f9489" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/fdaa6880-f075-493c-badd-79a48bc701f7" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f0273db4-6dc7-44b2-8732-e966dab8f98e" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/3aba8253-49ac-4708-b93c-02b2afa3917b" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/03e3254d-c8d2-4883-b0e8-2ad76ada61fb" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/42dd5077-a88d-49fd-876d-70ec04cc58a5" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/a8ff2cf4-18af-4658-b7f9-5e8d9bc94d7f" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/824cb5b9-eaca-4d32-b076-89e055362089" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9b16626e-f409-4276-8df1-c687b02ce355" width="184.2" height="409.6">
 
 ## Media Details:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/42b00f3e-38c4-4d5b-b451-2428440a0b63" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/05241efa-40d5-4384-9278-762d113b0e65" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9d8a0d3a-2398-43f9-bd65-908eaefaf7ee" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/b66d3b2e-9b28-4c5a-850d-8dc5dfdfe114" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/fa827e9c-8892-4e89-b0eb-1964f22f3de2" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f4287e03-8397-481e-9e5b-1bf715b68e4b" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/af2ff637-b992-405b-99e2-0032d46efcf2" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0eb46284-5d5a-48ee-8b25-543a9e54237e" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/bcf8a9d6-2b01-4b91-8430-319e1575ed23" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/dce02a9d-b173-46bf-95b7-18adb074db84" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/6752b44b-e64f-4bd7-86e6-9b60fa7cc9fc" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f81cdb86-4882-4f6c-8dd2-9cdc3560010b" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/7f849a57-f838-4111-88d1-8ef66170b258" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/4d5ab7b8-645b-450a-af13-8ded491fb359" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/b473b3b6-5752-4e59-ab81-e3004401d9e3" width="184.2" height="409.6">
 
 ## Cast Details:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0ec8f099-a8f7-4285-a927-5b7fda0fa8d2" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/adc2f90b-6d44-4c9e-8eeb-cc20fbd27555" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/374e6268-5777-4e3f-babe-a7bb827ade27" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/83cd4b80-28ca-4475-8689-a7e15bae1851" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/60d15503-3bd0-452d-ab1d-3c13a4c3a38d" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/8f5621c0-1c9f-4d05-ab9d-b245b25c1a7d" width="184.2" height="409.6">
 
 ## Search Screen:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d4e3789b-8065-4640-aee9-70ec659697ca" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/a0de7303-86da-4d93-aba1-f2bb5e23e651" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0c6be577-00e3-4f2a-b64b-b72188556c95" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9a27a4a8-a8bd-4165-8b4f-444474646a1b" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/47e15b82-de0f-4007-90bf-345c3955d7a3" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/08dafc37-986e-4757-a541-6bbcc4569b2b" width="184.2" height="409.6">
 <img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d811c3af-d586-485b-a9e6-32230b3e4d40" width="184.2" height="409.6">
 
 ## Configuration
