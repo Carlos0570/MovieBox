@@ -33,34 +33,21 @@ MovieBox is your one-stop destination for discovering trending movies and series
 * Retrofit: Utilizing Retrofit for efficient networking capabilities, enabling seamless communication with external APIs.
   
 ## Home:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f0273db4-6dc7-44b2-8732-e966dab8f98e" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/3aba8253-49ac-4708-b93c-02b2afa3917b" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/03e3254d-c8d2-4883-b0e8-2ad76ada61fb" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/42dd5077-a88d-49fd-876d-70ec04cc58a5" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/a8ff2cf4-18af-4658-b7f9-5e8d9bc94d7f" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/824cb5b9-eaca-4d32-b076-89e055362089" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9b16626e-f409-4276-8df1-c687b02ce355" width="184.2" height="409.6">
+![home presentation](https://github.com/Carlos0570/MovieBox/assets/119904210/231f85bc-52e6-43c0-82da-8bbe973d168b)
 
 ## Media Details:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0eb46284-5d5a-48ee-8b25-543a9e54237e" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/bcf8a9d6-2b01-4b91-8430-319e1575ed23" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/dce02a9d-b173-46bf-95b7-18adb074db84" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/6752b44b-e64f-4bd7-86e6-9b60fa7cc9fc" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f81cdb86-4882-4f6c-8dd2-9cdc3560010b" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/7f849a57-f838-4111-88d1-8ef66170b258" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/4d5ab7b8-645b-450a-af13-8ded491fb359" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/b473b3b6-5752-4e59-ab81-e3004401d9e3" width="184.2" height="409.6">
+![media detail presentation](https://github.com/Carlos0570/MovieBox/assets/119904210/6fbaa2c6-c1ef-4652-a6c2-921efe8b337e)
 
 ## Cast Details:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/83cd4b80-28ca-4475-8689-a7e15bae1851" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/60d15503-3bd0-452d-ab1d-3c13a4c3a38d" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/8f5621c0-1c9f-4d05-ab9d-b245b25c1a7d" width="184.2" height="409.6">
+![Apple iPhone 11 Pro Max Presentation](https://github.com/Carlos0570/MovieBox/assets/119904210/b9f6f770-60d4-43b7-96d0-948f9eb50c08)
 
-## Search Screen:
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9a27a4a8-a8bd-4165-8b4f-444474646a1b" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/47e15b82-de0f-4007-90bf-345c3955d7a3" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/08dafc37-986e-4757-a541-6bbcc4569b2b" width="184.2" height="409.6">
-<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/d811c3af-d586-485b-a9e6-32230b3e4d40" width="184.2" height="409.6">
+## Search Content:
+![search presentation](https://github.com/Carlos0570/MovieBox/assets/119904210/c068dd41-2ac0-4f14-83ff-faefefa2be4c)  
+
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/f0273db4-6dc7-44b2-8732-e966dab8f98e" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/0eb46284-5d5a-48ee-8b25-543a9e54237e" width="184.2" height="409.6">
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/9a27a4a8-a8bd-4165-8b4f-444474646a1b" width="184.2" height="409.6">  
+<img src="https://github.com/Carlos0570/MovieBox/assets/119904210/83cd4b80-28ca-4475-8689-a7e15bae1851" width="184.2" height="409.6">  
 
 ## Configuration
 To enable the functionality of the application, it is imperative to generate an API key from The Movie Database (TMDb). To obtain this key, please follow the instructions outlined in the following link: [TMDb API Key Generation.](https://developer.themoviedb.org/reference/intro/authentication#api-key-quick-start)  
